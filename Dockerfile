@@ -9,10 +9,10 @@ RUN pnpm install
 COPY prisma ./prisma
 RUN pnpm prisma generate
 
+COPY . ./
+
 RUN pnpm build
 RUN pnpm prune --prod
-
-COPY . ./
 
 # FROM base AS dependencies
 

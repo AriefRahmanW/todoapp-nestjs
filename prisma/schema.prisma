@@ -11,18 +11,21 @@ datasource db {
 }
 
 model activities {
-  activity_id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement()) @map("activity_id")
   title String @db.VarChar(100)
   email String @db.VarChar(50)
-  created_at DateTime @db.Date() @default(now())
+  created_at DateTime @db.Timestamp(0) @default(now())
+  updated_at DateTime @updatedAt
   todos todos[]
 }
 
 model todos {
-  todo_id Int @id @default(autoincrement())
+  id Int @id @default(autoincrement()) @map("todo_id")
   title String @db.VarChar(100)
-  priority String @db.VarChar(10)
-  created_at DateTime @db.Date() @default(now())
-  activities activities @relation(fields: [activity_group_id], references: [activity_id])
+  is_active String @db.VarChar(1) @default("1")
+  priority String @db.VarChar(10) @default("very-high")
+  created_at DateTime @db.Timestamp(0) @default(now())
+  updated_at DateTime @updatedAt
+  activities activities @relation(fields: [activity_group_id], references: [id])
   activity_group_id Int
 }

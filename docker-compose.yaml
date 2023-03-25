@@ -21,7 +21,7 @@ services:
       MYSQL_DBNAME: todoapp
       MYSQL_USER: root
       MYSQL_PASSWORD: 12345678
-      MYSQL_HOST: db
+      MYSQL_HOST: localhost
     volumes:
       - ./:/nodejs_hello
     ports:

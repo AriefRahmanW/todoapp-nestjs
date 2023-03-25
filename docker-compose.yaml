@@ -23,6 +23,7 @@ services:
       MYSQL_PASSWORD: 12345678
       MYSQL_HOST: localhost
       MYSQL_PORT: 3306
+      DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DBNAME}
     volumes:
       - ./:/nestjs_todoapp
     ports:

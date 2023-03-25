@@ -24,6 +24,6 @@ async function bootstrap() {
       });
     },
   }));
-  await app.listen(3030);
+  await app.listen(3030, "0.0.0.0");
 }
 bootstrap();

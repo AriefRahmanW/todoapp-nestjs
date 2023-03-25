@@ -7,8 +7,8 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 
 COPY .env.example .env
-# COPY prisma ./prisma
-# RUN pnpm prisma generate
+COPY prisma ./prisma
+RUN pnpm prisma generate
 
 COPY . ./
 

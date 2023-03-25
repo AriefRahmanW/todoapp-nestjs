@@ -3,3 +3,6 @@ test_docker:
 
 rebuild:
 	docker-compose up -d --build --force-recreate
+
+build:
+	docker build .

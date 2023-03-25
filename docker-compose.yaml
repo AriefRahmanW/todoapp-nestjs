@@ -17,7 +17,7 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: unless-stopped
-    environment:
+    # environment:
       # MYSQL_DBNAME: todoapp
       # MYSQL_USER: root
       # MYSQL_PASSWORD: 12345678

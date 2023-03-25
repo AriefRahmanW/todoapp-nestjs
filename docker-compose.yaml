@@ -12,24 +12,6 @@ services:
     volumes:
       - todoapp-mysql-data:/var/lib/mysql
       - todoapp-mysql-config:/etc/mysql
-  node_backend:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    # environment:
-      # MYSQL_DBNAME: todoapp
-      # MYSQL_USER: root
-      # MYSQL_PASSWORD: 12345678
-      # MYSQL_HOST: localhost
-      # MYSQL_PORT: 3306
-      # DATABASE_URL: mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DBNAME}
-    volumes:
-      - ./:/nestjs_todoapp
-    ports:
-      - "3030:3030"
-    depends_on:
-      - db
 
 volumes:
   todoapp-mysql-data:

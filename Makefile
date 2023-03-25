@@ -5,4 +5,7 @@ rebuild:
 	docker-compose up -d --build --force-recreate
 
 build:
-	docker build .
+	docker build -t todoapp-nestjs .
+
+mysql:
+	docker run --name=mysql-docker -d mysql/mysql-server:latest

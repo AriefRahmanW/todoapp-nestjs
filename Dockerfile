@@ -12,6 +12,8 @@ RUN pnpm prisma generate
 RUN pnpm build
 RUN pnpm prune --prod
 
+COPY . ./
+
 # FROM base AS dependencies
 
 # WORKDIR /app

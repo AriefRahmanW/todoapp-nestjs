@@ -8,4 +8,4 @@ build:
 	docker build -t todoapp-nestjs .
 
 mysql:
-	docker run --name=mysql-docker -d mysql/mysql-server:latest
+	docker run --name mysql-docker -e MYSQL_ROOT_PASSWORD=12345678 -d mysql:5.7

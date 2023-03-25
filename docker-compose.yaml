@@ -22,6 +22,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: 12345678
       MYSQL_HOST: localhost
+      MYSQL_PORT: 3306
     volumes:
       - ./:/nestjs_todoapp
     ports:

@@ -7,7 +7,6 @@ FROM base AS dependencies
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
-RUN pnpm prisma migrate dev --name init
 
 FROM base AS build
 

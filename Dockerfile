@@ -4,7 +4,7 @@ RUN npm i -g pnpm
 
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
-RUN pnpm prisma run deploy
+RUN pnpm prisma generate
 
 RUN pnpm build
 RUN pnpm prune --prod

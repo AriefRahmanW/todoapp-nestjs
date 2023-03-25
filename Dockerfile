@@ -2,8 +2,11 @@ FROM node:19-alpine AS base
 
 RUN npm i -g pnpm
 
+WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
+
+COPY prisma ./prisma
 RUN pnpm prisma generate
 
 RUN pnpm build

@@ -7,8 +7,8 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 
 COPY .env.example .env
-COPY prisma ./prisma
-RUN pnpm prisma generate
+# COPY prisma ./prisma
+# RUN pnpm prisma generate
 
 COPY . ./
 
@@ -36,4 +36,4 @@ RUN pnpm prune --prod
 # COPY --from=build /app/dist/ ./dist/
 # # COPY --from=build /app/node_modules ./node_modules
 
-CMD [  "pnpm", "run", "start:prod" ]
+CMD [  "pnpm", "run", "start:migrate:prod" ]

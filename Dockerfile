@@ -22,5 +22,8 @@ FROM base AS deploy
 WORKDIR /app
 COPY --from=build /app/dist/ ./dist/
 COPY --from=build /app/node_modules ./node_modules
+COPY --from=builder /app/prisma ./prisma
 
-CMD [ "node", "dist/main.js" ]
+EXPOSE 3030
+
+CMD [  "pnpm", "run", "start:migrate:prod" ]

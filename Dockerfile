@@ -17,9 +17,11 @@ COPY --from=dependencies /app/prisma ./prisma
 RUN pnpm prisma generate
 RUN pnpm build
 
+FROM base as deploy
+
 WORKDIR /app
 COPY --from=build /app/dist/ ./dist/
-# COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/node_modules ./node_modules
 
 EXPOSE $PORT
 

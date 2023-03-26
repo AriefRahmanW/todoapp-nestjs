@@ -36,4 +36,4 @@ RUN pnpm build
 # COPY --from=build /app/dist/ ./dist/
 # # COPY --from=build /app/node_modules ./node_modules
 
-CMD [  "pnpm", "run", "start:migrate:prod" ]
+CMD [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "dist/main" ]

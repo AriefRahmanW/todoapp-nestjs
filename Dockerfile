@@ -6,8 +6,7 @@ WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 RUN pnpm install
 
-ENV DATABASE_URL mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DBNAME}
-
+COPY .env.example .env
 COPY prisma ./prisma
 RUN pnpm prisma generate
 
@@ -37,5 +36,4 @@ RUN pnpm build
 # WORKDIR /app
 # COPY --from=build /app/dist/ ./dist/
 # # COPY --from=build /app/node_modules ./node_modules
-
 CMD [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "./dist/main" ]

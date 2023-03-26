@@ -1,4 +1,4 @@
-FROM node:19-alpine as base
+FROM node:19-alpine as builder
 
 RUN npm i -g pnpm
 
@@ -14,26 +14,11 @@ COPY . ./
 
 RUN pnpm build
 
-# RUN pnpm prune --prod
+FROM node:19-alpine
 
-# FROM base AS dependencies
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/package*.json ./
+COPY --from=builder /app/dist ./dist
 
-# WORKDIR /app
-# COPY package.json pnpm-lock.yaml ./
-# RUN pnpm install
 
-# FROM base AS build
-
-# WORKDIR /app
-# COPY . .
-# COPY --from=dependencies /app/node_modules ./node_modules
-# COPY --from=dependencies /app/prisma ./prisma
-# RUN pnpm build
-# RUN pnpm prune --prod
-
-# FROM base AS deploy
-
-# WORKDIR /app
-# COPY --from=build /app/dist/ ./dist/
-# # COPY --from=build /app/node_modules ./node_modules
-CMD [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "./dist/main" ]
+CMD [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "dist/main" ]

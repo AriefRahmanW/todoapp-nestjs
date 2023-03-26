@@ -18,7 +18,7 @@ export class ActivityService{
         try{
             const activities = await this.prismaService.activities.findMany({
                 orderBy: {
-                    updated_at: "desc"
+                    updatedAt: "desc"
                 }
             })
             return {

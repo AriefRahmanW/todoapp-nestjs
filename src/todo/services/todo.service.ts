@@ -26,7 +26,7 @@ export class TodoService{
             const todos = await this.prismaService.todos.findMany({
                 where: where,
                 orderBy: {
-                    updated_at: "desc"
+                    updatedAt: "desc"
                 }
             })
 

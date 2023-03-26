@@ -4,6 +4,8 @@ RUN npm i -g pnpm
 
 ENV DATABASE_URL mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DBNAME}
 
+FROM base as dependencies
+
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
 # COPY prisma ./prisma

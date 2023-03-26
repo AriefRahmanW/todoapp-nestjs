@@ -24,6 +24,8 @@ async function bootstrap() {
       });
     },
   }));
-  await app.listen(3030, "0.0.0.0");
+  await app.listen(
+    process.env.PORT || 3030, 
+    process.env.HOST || "localhost");
 }
 bootstrap();

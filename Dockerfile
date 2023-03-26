@@ -2,30 +2,40 @@ FROM node:19-alpine as base
 
 RUN npm i -g pnpm
 
-ENV DATABASE_URL mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DBNAME}
-
-FROM base as dependencies
-
 WORKDIR /app
 COPY package.json pnpm-lock.yaml ./
-# COPY prisma ./prisma
 RUN pnpm install
 
-FROM base AS build
+ENV DATABASE_URL mysql://${MYSQL_USER}:${MYSQL_PASSWORD}@${MYSQL_HOST}:${MYSQL_PORT}/${MYSQL_DBNAME}
 
-WORKDIR /app
-COPY . .
-COPY --from=dependencies /app/node_modules ./node_modules
-
+COPY prisma ./prisma
 RUN pnpm prisma generate
+
+COPY . ./
+
 RUN pnpm build
 
-FROM base as deploy
+# RUN pnpm prune --prod
 
-WORKDIR /app
-COPY --from=build /app/dist/ ./dist/
-COPY --from=build /app/node_modules ./node_modules
+# FROM base AS dependencies
 
-EXPOSE $PORT
+# WORKDIR /app
+# COPY package.json pnpm-lock.yaml ./
+# RUN pnpm install
 
-CMD [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "dist/main" ]
+# FROM base AS build
+
+# WORKDIR /app
+# COPY . .
+# COPY --from=dependencies /app/node_modules ./node_modules
+# COPY --from=dependencies /app/prisma ./prisma
+# RUN pnpm build
+# RUN pnpm prune --prod
+
+# FROM base AS deploy
+
+# WORKDIR /app
+# COPY --from=build /app/dist/ ./dist/
+# # COPY --from=build /app/node_modules ./node_modules
+
+CMD [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "./dist/main" ]

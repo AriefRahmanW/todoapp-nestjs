@@ -1,4 +1,4 @@
-FROM node:19-alpine
+FROM node:19-alpine as base
 
 RUN npm i -g pnpm
 
@@ -14,7 +14,7 @@ COPY . ./
 
 RUN pnpm build
 
-COPY dist ./dist
+COPY /app/dist ./dist
 # RUN pnpm prune --prod
 
 # FROM base AS dependencies

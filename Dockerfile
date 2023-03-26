@@ -13,7 +13,7 @@ RUN pnpm prisma generate
 COPY . ./
 
 RUN pnpm build
-RUN pnpm prune --prod
+# RUN pnpm prune --prod
 
 # FROM base AS dependencies
 

@@ -26,7 +26,7 @@ async function bootstrap() {
   }));
   await app.listen(
     process.env.PORT || 3030, 
-    process.env.HOST || "localhost",
+    process.env.HOST || "0.0.0.0",
     (err, address) => {
       console.log(err)
     }

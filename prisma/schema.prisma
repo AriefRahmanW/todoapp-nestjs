@@ -14,18 +14,18 @@ model activities {
   id Int @id @default(autoincrement()) @map("activity_id")
   title String @db.VarChar(100)
   email String @db.VarChar(50)
-  created_at DateTime @db.Timestamp(0) @default(now())
-  updated_at DateTime @updatedAt
+  createdAt DateTime @db.Timestamp(0) @default(now())
+  updatedAt DateTime @updatedAt
   todos todos[]
 }
 
 model todos {
   id Int @id @default(autoincrement()) @map("todo_id")
   title String @db.VarChar(100)
-  is_active String @db.VarChar(1) @default("1")
+  is_active Boolean @default(true)
   priority String @db.VarChar(10) @default("very-high")
-  created_at DateTime @db.Timestamp(0) @default(now())
-  updated_at DateTime @updatedAt
+  createdAt DateTime @db.Timestamp(0) @default(now())
+  updatedAt DateTime @updatedAt
   activities activities @relation(fields: [activity_group_id], references: [id])
   activity_group_id Int
 }

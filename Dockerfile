@@ -14,7 +14,7 @@ COPY . ./
 
 RUN pnpm build
 
-RUN [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "dist/main" ]
+RUN [  "node", "dist/main" ]
 
 # COPY dist ./dist
 

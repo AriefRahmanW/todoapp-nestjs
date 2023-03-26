@@ -14,13 +14,8 @@ COPY . ./
 
 RUN pnpm build
 
-FROM node:19-alpine
 
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/package*.json ./
-COPY --from=builder /app/dist ./dist
-
-EXPOSE 3030
+COPY /app/dist ./dist
 
 
 CMD [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "dist/main" ]

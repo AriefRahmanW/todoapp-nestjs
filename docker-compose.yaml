@@ -5,8 +5,10 @@ services:
     image: mysql:5.7
     restart: always
     environment:
+      - MYSQL_USER=admin
       - MYSQL_ROOT_PASSWORD=12345678
       - MYSQL_DATABASE=todoapp
+      - MYSQL_ROOT_PASSWORD=87654321
     ports:
       - 3306:3306
     volumes:

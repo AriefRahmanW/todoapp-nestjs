@@ -5,6 +5,7 @@ import {
   NestFastifyApplication,
 } from '@nestjs/platform-fastify';
 import { BadRequestException, ValidationError, ValidationPipe } from '@nestjs/common';
+import { PrismaService } from './prisma/prisma.service';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestFastifyApplication>(
@@ -24,9 +25,11 @@ async function bootstrap() {
       });
     },
   }));
+  const prismaService = app.get(PrismaService);
+  await prismaService.enableShutdownHooks(app)
   await app.listen(
     process.env.PORT || 3030, 
-    process.env.HOST || "0.0.0.0",
+    process.env.HOST || "localhost",
     (err, address) => {
       console.log(err)
     }

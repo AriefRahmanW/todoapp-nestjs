@@ -1,5 +1,5 @@
-test_docker:
-	docker run -e MYSQL_HOST=localhost -e MYSQL_USER=root -e MYSQL_PASSWORD=12345678 -e MYSQL_DBNAME=todoapp -p 8090:3030 ariefrahmanw/todoapp-nestjs
+run:
+	docker run -e MYSQL_HOST=127.0.0.1 -e MYSQL_USER=public -e MYSQL_PASSWORD=password -e MYSQL_DBNAME=todoapp -e MYSQL_PORT=6603 -p 8090:3030 ariefrahmanw/todoapp-nestjs
 
 rebuild:
 	docker-compose up -d --build --force-recreate

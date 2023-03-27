@@ -5,14 +5,27 @@ services:
     image: mysql:5.7
     restart: always
     environment:
-      - MYSQL_USER=admin
       - MYSQL_ROOT_PASSWORD=12345678
       - MYSQL_DATABASE=todoapp
-      - MYSQL_PASSWORD=password
     ports:
       - 3306:3306
     volumes:
       - todoapp-mysql-data:/var/lib/mysql
-
+  nestjs_backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    environment:
+      MYSQL_DBNAME: todoapp
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 12345678
+      MYSQL_HOST: db
+    volumes:
+      - ./:/nestjs_backend
+    ports:
+      - "3030:3030"
+    depends_on:
+      - db
 volumes:
   todoapp-mysql-data:

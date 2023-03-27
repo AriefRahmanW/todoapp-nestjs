@@ -11,6 +11,7 @@ services:
       - 3306:3306
     volumes:
       - todoapp-mysql-data:/var/lib/mysql
+      - todoapp-mysql-config:/etc/mysql
   nestjs_backend:
     build:
       context: .
@@ -30,3 +31,4 @@ services:
       - db
 volumes:
   todoapp-mysql-data:
+  todoapp-mysql-config:

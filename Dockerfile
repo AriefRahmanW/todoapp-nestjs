@@ -14,5 +14,7 @@ COPY . ./
 
 RUN pnpm build
 
+RUN chmod +x run.sh
 
-CMD [  "pnpm" ,"prisma", "migrate", "deploy", "&&", "node", "dist/main" ]
+
+CMD [  "./run.sh" ]

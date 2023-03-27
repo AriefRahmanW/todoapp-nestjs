@@ -17,4 +17,4 @@ RUN pnpm build
 RUN chmod +x run.sh
 
 
-CMD [ "/app/run.sh" ]
+CMD [ "sh" ,"run.sh" ]
